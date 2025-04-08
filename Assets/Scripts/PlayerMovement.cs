@@ -18,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 jump;
     public float jumpForce = 4f;
 
+    [Header("Health")]
+    [SerializeField] private int currenthealth;
+    private int maxhealth = 3;
+
+
+    [Header("Cristais")]
+    [SerializeField]private Cristal cristalObj;
+    [SerializeField] private int cristaisColetados;
 
     private float horizontalInput;
     private float verticalInput;
@@ -30,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        currenthealth = maxhealth;
 
         jump = new Vector3(0f, 2f, 0f);
     }
@@ -72,6 +82,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         grounded = true;
+
+        Cristal cristal = collision.gameObject.GetComponent<Cristal>();
+
+        //detectar cristais
+        if (cristal)
+        {
+            cristaisColetados++;
+        }
     }
 
     private void FixedUpdate()
