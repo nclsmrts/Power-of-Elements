@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class Cristal : MonoBehaviour
 {
-    //PlayerMovement player;
+    [SerializeField]private int vida = 2;
 
     void Start()
     {
-        //player = GetComponent<PlayerMovement>();
+        
     }
 
     void Update()
     {
-        
+        if (vida <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,6 +24,14 @@ public class Cristal : MonoBehaviour
         if (player)
         {
             Destroy(gameObject);
+        }
+
+        PlayerAttack playerAttack = collision.gameObject.GetComponent<PlayerAttack>();
+
+
+        if (playerAttack)
+        {
+            vida--;
         }
     }
 }

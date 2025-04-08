@@ -4,7 +4,6 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [Header("Movement")]
-
     public Transform orientation;
     public float moveSpeed;
     public float groundDrag;
@@ -21,11 +20,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int currenthealth;
     private int maxhealth = 3;
-
+    public bool isDead = false;
 
     [Header("Cristais")]
-    [SerializeField]private Cristal cristalObj;
     [SerializeField] private int cristaisColetados;
+
+    [Header("Attack")]
+    [SerializeField] private GameObject atack;
+    [SerializeField] private Transform camera;
 
     private float horizontalInput;
     private float verticalInput;
@@ -65,17 +67,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        //attack
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
+
+
         //controlar a velocidade
         SpeedControl();
-
-
-        ////Jump
-        //if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        //{
-        //    rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-        //    grounded = false;
-        //}
-
 
     }
 
@@ -89,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         if (cristal)
         {
             cristaisColetados++;
+
+            Destroy(cristal);
         }
     }
 
@@ -100,9 +103,34 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        if (!isDead)
+        {
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+    }
+
+    void Attack()
+    {
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+
+        Rigidbody rb = Instantiate(atack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(camera.forward * 30f, ForceMode.Impulse);
+        rb.AddForce(transform.up, ForceMode.Impulse);
+
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        currenthealth -= damage;
+
+        if (currenthealth <= 0)
+        {
+            isDead = true;
+        }
+
     }
 
     private void SpeedControl()

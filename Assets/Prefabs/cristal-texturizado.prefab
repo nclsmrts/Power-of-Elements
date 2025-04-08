@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7246949897913205554
+--- !u!1001 &7600461880625756419
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2338796
+      value: -9.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.764
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.806702
+      value: 16.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,7 +53,7 @@ PrefabInstance:
       value: cristal-texturizado
       objectReference: {fileID: 0}
     - target: {fileID: 3830360759599462339, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
-      propertyPath: m_Materials.Array.size
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3830360759599462339, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
@@ -62,26 +62,29 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d55303b20adf68f4f826bb6ad4db6076, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
-    - {fileID: 65702495048144492, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
     - {fileID: 7869873546869171050, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
+    - {fileID: 65702495048144492, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1522742450396932801, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2923576540905990630}
+      addedObject: {fileID: 3812398261299001204}
+    - targetCorrespondingSourceObject: {fileID: 1522742450396932801, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1418110719618198622}
   m_SourcePrefab: {fileID: 100100000, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
---- !u!1 &8193042477859121651 stripped
+--- !u!1 &8960929603800093634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1522742450396932801, guid: 33d9f4526dc062e4dba745a3ab4b5afa, type: 3}
-  m_PrefabInstance: {fileID: 7246949897913205554}
+  m_PrefabInstance: {fileID: 7600461880625756419}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &2923576540905990630
-SphereCollider:
+--- !u!65 &3812398261299001204
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8193042477859121651}
+  m_GameObject: {fileID: 8960929603800093634}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -94,5 +97,17 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01603586
-  m_Center: {x: -0.0003245568, y: -0.00048991916, z: 0.015772311}
+  m_Size: {x: 0.022267995, y: 0.022687832, z: 0.037102945}
+  m_Center: {x: 0.00072468066, y: 0.0007153544, z: 0.014517874}
+--- !u!114 &1418110719618198622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8960929603800093634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b94f35da3511e04db7ff88309e1191d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

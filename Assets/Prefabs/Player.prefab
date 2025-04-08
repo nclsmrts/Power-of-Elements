@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.93, y: 7.66, z: 18.19}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8822424989406969576}
@@ -79,15 +79,17 @@ MonoBehaviour:
   orientation: {fileID: 4372400325871536263}
   moveSpeed: 5
   groundDrag: 4
-  playerHeight: 2
+  playerHeight: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   grounded: 0
   jumpForce: 4
   currenthealth: 0
-  cristalObj: {fileID: 0}
+  isDead: 0
   cristaisColetados: 0
+  atack: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!114 &9032354892514987707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08401ac474a393f498906b531c127806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 4
+  jumpForce: 3
 --- !u!1 &6469481470153342347
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ GameObject:
   - component: {fileID: 6950444671909828771}
   - component: {fileID: 1733937230113397034}
   - component: {fileID: 1156302946264479173}
-  - component: {fileID: 2713543023195819542}
+  - component: {fileID: 6482295063130737855}
   m_Layer: 11
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -133,7 +135,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3605749615519779123}
@@ -350,7 +352,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1933
+  m_VersionIndex: 1957
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -386,7 +388,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6469481470153342347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -454,8 +456,8 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!65 &2713543023195819542
-BoxCollider:
+--- !u!136 &6482295063130737855
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -472,8 +474,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  serializedVersion: 2
+  m_Radius: 1.2499999
+  m_Height: 2.5
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6644137386745072478
 GameObject:
@@ -500,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 6644137386745072478}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -531,7 +535,7 @@ Transform:
   m_GameObject: {fileID: 7526487531996777763}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
