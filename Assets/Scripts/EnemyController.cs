@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
         if (!playerInSightRange) Patroling();
+        if (playerInSightRange) ChasePlayer();
     }
 
 
@@ -58,6 +59,11 @@ public class EnemyController : MonoBehaviour
             walkPointSet = false;
         }
 
+    }
+
+    void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
     }
 
     private void SearchWalkPoint()
