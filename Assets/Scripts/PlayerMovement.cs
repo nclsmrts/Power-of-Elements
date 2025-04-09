@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float groundDrag;
 
+
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -28,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private GameObject atack;
     [SerializeField] private Transform camera;
+
+    [Header("PowerUp")]
+    private bool powerUpSpeed = false;
+    public GameObject powerSpeed;
 
     private float horizontalInput;
     private float verticalInput;
@@ -74,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
             Attack();
         }
 
-
         //controlar a velocidade
         SpeedControl();
 
@@ -93,6 +97,23 @@ public class PlayerMovement : MonoBehaviour
 
             Destroy(cristal);
         }
+
+
+
+        //powerUp speed
+        if (collision.gameObject.CompareTag("speed"))
+        {
+            powerUpSpeed = true;
+
+            if (powerUpSpeed)
+            {
+                //pegar metade do valor e somar
+                moveSpeed += 5;
+            }
+
+            Destroy(powerSpeed);
+        }
+
     }
 
     private void FixedUpdate()
@@ -144,8 +165,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
 
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
-
-
         }
 
     }

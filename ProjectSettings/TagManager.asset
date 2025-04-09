@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - chao
+  - Pulo
+  - player
+  - enemy
+  - speed
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - enemyAttack
   - attackPlayer
   - whatIsGround
   - whatIsPlayer

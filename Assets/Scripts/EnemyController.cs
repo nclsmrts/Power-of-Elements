@@ -17,12 +17,21 @@ public class EnemyController : MonoBehaviour
     private bool walkPointSet;
     public float walkPointRange;
 
+    [Header("Attack")]
+    [SerializeField] private GameObject attack;
+    public float timeBetweenAttacks;
+    private bool alreadyAttacked;
+
     [Header("States")]
-    public float sightRange;
-    public bool playerInSightRange;
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    private Rigidbody rb;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
 
@@ -37,9 +46,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange) Patroling();
-        if (playerInSightRange) ChasePlayer();
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
 
@@ -73,9 +84,45 @@ public class EnemyController : MonoBehaviour
 
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkpoint, - transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, whatIsGround))
         {
             walkPointSet = true;
         }
+    }
+
+    void AttackPlayer()
+    {
+        transform.LookAt(player);
+
+
+        if (!alreadyAttacked)
+        {
+            Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+
+            Instantiate(attack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 30f, ForceMode.Impulse);
+            rb.AddForce(transform.up, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+
+    }
+
+    void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

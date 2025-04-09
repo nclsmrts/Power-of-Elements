@@ -6,12 +6,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
 
@@ -22,5 +22,23 @@ public class PlayerAttack : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+
+        if (gameObject.CompareTag("player") && enemy)
+        {
+
+            enemy.TakeDamage(damage);
+
+        }
+
+        if (gameObject.CompareTag("enemy") && player)
+        {
+            player.TakeDamage(damage);
+
+
+        }
+
     }
 }
