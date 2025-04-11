@@ -9,6 +9,8 @@ TagManager:
   - player
   - enemy
   - speed
+  - pedra
+  - invencible
   layers:
   - Default
   - TransparentFX

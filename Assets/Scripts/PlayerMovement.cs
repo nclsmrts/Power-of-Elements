@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 jump;
     public float jumpForce = 4f;
 
+    public bool plane = false;
+
+
     [Header("Health")]
     [SerializeField] private int currenthealth;
     private int maxhealth = 3;
@@ -31,8 +34,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform camera;
 
     [Header("PowerUp")]
-    private bool powerUpSpeed = false;
     public GameObject powerSpeed;
+    private bool powerUpSpeed = false;
+
+    private bool powerupInvencible;
+    public GameObject powerInvencible;
+
+    //[Header("Pedra")]
+    //public GameObject pedra;
+
+
 
     private float horizontalInput;
     private float verticalInput;
@@ -69,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.linearDamping = 0;
+        }
+
+        //Planar
+        if (plane && Input.GetKeyDown(KeyCode.C))
+        {
+            rb.mass = 0.4f;
         }
 
 
@@ -108,11 +125,33 @@ public class PlayerMovement : MonoBehaviour
             if (powerUpSpeed)
             {
                 //pegar metade do valor e somar
-                moveSpeed += 5;
+                float buffSpeed = moveSpeed / 2 + 1;
+                moveSpeed += buffSpeed;
             }
 
             Destroy(powerSpeed);
         }
+
+        //powerup invencibilidade
+        if (collision.gameObject.CompareTag("invencible"))
+        {
+            powerupInvencible = true;
+
+            if (powerInvencible)
+            {
+                int buffVida = currenthealth;
+                currenthealth += buffVida;
+            }
+            Destroy(powerInvencible);
+        }
+
+        //detectar pedra
+        //if (collision.gameObject.CompareTag("pedra"))
+        //{
+
+        //    Redirecionar(collision.gameObject);
+        //}
+
 
     }
 
@@ -168,4 +207,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+
+    //void Redirecionar(GameObject pedra)
+    //{
+    //    Rigidbody rbPedra = pedra.GetComponent<Rigidbody>();
+
+
+    //    Vector3 direcao = rbPedra.linearVelocity.normalized;
+    //    float intensidade = 5f;
+
+    //    rb.linearVelocity = direcao * intensidade;
+
+    //}
 }
