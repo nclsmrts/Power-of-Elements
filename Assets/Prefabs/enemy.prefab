@@ -136,8 +136,12 @@ MonoBehaviour:
   currentHealth: 0
   walkpoint: {x: 0, y: 0, z: 0}
   walkPointRange: 2
+  attack: {fileID: 0}
+  timeBetweenAttacks: 3
   sightRange: 60
+  attackRange: 20
   playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!195 &7016846338451817650
 NavMeshAgent:
   m_ObjectHideFlags: 0

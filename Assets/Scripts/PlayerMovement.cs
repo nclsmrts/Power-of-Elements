@@ -22,9 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Health")]
-    [SerializeField] private int currenthealth;
+    public int currenthealth;
     private int maxhealth = 3;
     public bool isDead = false;
+    //public Sprite[] spriteVida;
+
 
     [Header("Cristais")]
     [SerializeField] private int cristaisColetados;
@@ -85,9 +87,8 @@ public class PlayerMovement : MonoBehaviour
         //Planar
         if (plane && Input.GetKeyDown(KeyCode.C))
         {
-            rb.mass = 0.4f;
+            rb.mass = 0.2f;
         }
-
 
         //attack
 
@@ -173,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Attack()
     {
-        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
         Rigidbody rb = Instantiate(atack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(camera.forward * 30f, ForceMode.Impulse);
@@ -185,6 +186,8 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currenthealth -= damage;
+
+        FindAnyObjectByType<UIManager>().UpdateUIPlayer();
 
         if (currenthealth <= 0)
         {

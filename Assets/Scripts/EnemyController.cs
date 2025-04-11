@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
 
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 3f)
         {
             walkPointSet = false;
         }
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 
-            Instantiate(attack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(attack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 30f, ForceMode.Impulse);
             rb.AddForce(transform.up, ForceMode.Impulse);
 
@@ -107,7 +107,6 @@ public class EnemyController : MonoBehaviour
 
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-
     }
 
     void ResetAttack()

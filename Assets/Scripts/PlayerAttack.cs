@@ -3,18 +3,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public int damage;
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
-
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -28,17 +16,12 @@ public class PlayerAttack : MonoBehaviour
 
         if (gameObject.CompareTag("player") && enemy)
         {
-
             enemy.TakeDamage(damage);
-
         }
 
         if (gameObject.CompareTag("enemy") && player)
         {
             player.TakeDamage(damage);
-
-
         }
-
     }
 }
