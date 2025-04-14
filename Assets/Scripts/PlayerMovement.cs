@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Cristais")]
-    [SerializeField] private int cristaisColetados;
+    public int cristaisColetados;
 
     [Header("Attack")]
     [SerializeField] private GameObject atack;
@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         if (cristal)
         {
             cristaisColetados++;
+
+            FindAnyObjectByType<UIManager>().UpdateCristais();
 
             Destroy(cristal);
         }
