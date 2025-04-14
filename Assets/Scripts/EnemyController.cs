@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     [Header("Health")]
-    private int maxHealth = 3;
+    private int maxHealth = 4;
     public int currentHealth;
 
     [Header("Patroling")]
@@ -100,7 +100,7 @@ public class EnemyController : MonoBehaviour
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 
             Rigidbody rb = Instantiate(attack, spawnPos, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 30f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 100f, ForceMode.Impulse);
             rb.AddForce(transform.up, ForceMode.Impulse);
 
             alreadyAttacked = true;

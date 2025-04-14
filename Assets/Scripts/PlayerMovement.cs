@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Health")]
-    public int currenthealth;
+    public float currenthealth;
     private int maxhealth = 3;
     public bool isDead = false;
     //public Sprite[] spriteVida;
@@ -41,10 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool powerupInvencible;
     public GameObject powerInvencible;
-
-    //[Header("Pedra")]
-    //public GameObject pedra;
-
 
 
     private float horizontalInput;
@@ -100,6 +97,12 @@ public class PlayerMovement : MonoBehaviour
         //controlar a velocidade
         SpeedControl();
 
+
+        if (isDead)
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -142,20 +145,33 @@ public class PlayerMovement : MonoBehaviour
 
             if (powerInvencible)
             {
-                int buffVida = currenthealth;
+                float buffVida = currenthealth * 2000 + 2;
                 currenthealth += buffVida;
             }
             Destroy(powerInvencible);
         }
 
-        //detectar pedra
-        //if (collision.gameObject.CompareTag("pedra"))
+
+        ////dano fogo
+
+        //if (collision.gameObject.CompareTag("fire") && !isFire)
         //{
+        //    queimando += Time.time;
 
-        //    Redirecionar(collision.gameObject);
+        //    currenthealth -= 1;
+
+        //    isFire = true;
+
+        //    while (queimando <= fogoTempo)
+        //    {
+        //        currenthealth -= 0.5f;
+        //    }
+
+        //    if (queimando >= fogoTempo)
+        //    {
+        //        isFire = false;
+        //    }
         //}
-
-
     }
 
     private void FixedUpdate()

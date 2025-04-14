@@ -20,7 +20,7 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        //fazer o 2 pulo
+        //fazer o pulo
         if (pulo)
         {
             if (Input.GetKeyDown(KeyCode.Space) && grounded)
