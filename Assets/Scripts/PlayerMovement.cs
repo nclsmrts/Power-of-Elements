@@ -39,9 +39,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("PowerUp")]
     public GameObject powerSpeed;
     private bool powerUpSpeed = false;
+    public GameObject powerInvencible;
+
+    [Header("Sons")]
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip somColetar;
 
     private bool powerupInvencible;
-    public GameObject powerInvencible;
+
 
 
     private float horizontalInput;
@@ -128,6 +135,9 @@ public class PlayerMovement : MonoBehaviour
         {
             powerUpSpeed = true;
 
+            //tocar som
+            audioSource.Play();
+
             if (powerUpSpeed)
             {
                 //pegar metade do valor e somar
@@ -142,6 +152,9 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("invencible"))
         {
             powerupInvencible = true;
+
+            //tocar som
+            audioSource.Play();
 
             if (powerInvencible)
             {
