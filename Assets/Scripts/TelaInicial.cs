@@ -8,7 +8,8 @@ public class TelaInicial : MonoBehaviour
 
     void Start()
     {
-        
+        //destravar cursor
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()

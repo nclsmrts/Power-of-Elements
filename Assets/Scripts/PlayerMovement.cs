@@ -49,7 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool powerupInvencible;
 
-
+    //local de spawn
+    private Vector3 spawnPos;
 
     private float horizontalInput;
     private float verticalInput;
@@ -66,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
         currenthealth = maxhealth;
 
         jump = new Vector3(0f, 2f, 0f);
+
+        spawnPos = transform.position;
     }
 
     void Update()
@@ -107,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isDead)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
     }
@@ -185,6 +188,14 @@ public class PlayerMovement : MonoBehaviour
         //        isFire = false;
         //    }
         //}
+
+
+        //resetar posição quando cair do mapa
+
+        if (collision.gameObject.CompareTag("limbo"))
+        {
+            transform.position = spawnPos;
+        }
     }
 
     private void FixedUpdate()
@@ -223,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
         if (currenthealth <= 0)
         {
             isDead = true;
+
         }
 
     }

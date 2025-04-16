@@ -12,6 +12,8 @@ TagManager:
   - pedra
   - invencible
   - fire
+  - enemyCristal
+  - limbo
   layers:
   - Default
   - TransparentFX

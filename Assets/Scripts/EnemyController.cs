@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private PlayerMovement playerScript;
     [SerializeField] private Transform player;
     [SerializeField] private NavMeshAgent agent;
 
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
     [Header("States")]
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    //public GameObject cristal5;
 
     private Rigidbody rb;
 
@@ -40,6 +42,10 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        if (gameObject.CompareTag("enemyCristal"))
+        {
+            currentHealth += 5;
+        }
 
     }
 
@@ -51,6 +57,16 @@ public class EnemyController : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+
+
+        //inimigos voltarem dps de pegar 4 cristais
+        //PlayerMovement player = GetComponent<PlayerMovement>();
+
+        //if (playerScript.cristaisColetados == 4)
+        //{
+        //    gameObject.SetActive(true);
+        //}
+
     }
 
 
@@ -120,7 +136,9 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
     }
